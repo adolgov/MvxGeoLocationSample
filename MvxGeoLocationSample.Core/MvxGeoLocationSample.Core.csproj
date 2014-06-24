@@ -34,13 +34,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <!-- A reference to the entire .NET Framework is automatically included -->
-    <ProjectReference Include="..\MvvmCross\Plugins\Cirrious\Location\Cirrious.MvvmCross.Plugins.Location\Cirrious.MvvmCross.Plugins.Location.csproj">
-      <Project>{8b0a9e43-e90f-455c-ae56-45bc70429167}</Project>
-      <Name>Cirrious.MvvmCross.Plugins.Location</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\TestViewModel.cs" />
@@ -54,6 +47,9 @@
     </Reference>
     <Reference Include="Cirrious.MvvmCross">
       <HintPath>..\MvxGeoLocationSample\packages\MvvmCross.HotTuna.MvvmCrossLibraries.3.1.1\lib\portable-win+net45+sl50+wp8+MonoAndroid+MonoTouch\Cirrious.MvvmCross.dll</HintPath>
+    </Reference>
+    <Reference Include="Cirrious.MvvmCross.Plugins.Location">
+      <HintPath>..\MvxGeoLocationSample\packages\MvvmCross.HotTuna.Plugin.Location.3.1.1\lib\portable-win+net45+sl50+wp8+MonoAndroid+MonoTouch\Cirrious.MvvmCross.Plugins.Location.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

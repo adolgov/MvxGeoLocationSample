@@ -34,14 +34,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Cirrious.CrossCore">
-      <HintPath>..\MvvmCross\bin\Debug\Mvx\Droid\Cirrious.CrossCore.dll</HintPath>
+    <Reference Include="Cirrious.CrossCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e16445fd9b451819, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\MvxGeoLocationSample\packages\MvvmCross.HotTuna.CrossCore.3.1.1\lib\MonoAndroid\Cirrious.CrossCore.dll</HintPath>
     </Reference>
-    <Reference Include="Cirrious.CrossCore.Droid">
-      <HintPath>..\MvvmCross\bin\Debug\Mvx\Droid\Cirrious.CrossCore.Droid.dll</HintPath>
+    <Reference Include="Cirrious.CrossCore.Droid, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\MvxGeoLocationSample\packages\MvvmCross.HotTuna.CrossCore.3.1.1\lib\MonoAndroid\Cirrious.CrossCore.Droid.dll</HintPath>
     </Reference>
-    <Reference Include="Cirrious.MvvmCross">
-      <HintPath>..\MvvmCross\bin\Debug\Mvx\Droid\Cirrious.MvvmCross.dll</HintPath>
+    <Reference Include="Cirrious.MvvmCross.Plugins.Location, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\MvxGeoLocationSample\packages\MvvmCross.HotTuna.Plugin.Location.3.1.1\lib\MonoAndroid\Cirrious.MvvmCross.Plugins.Location.dll</HintPath>
     </Reference>
     <Reference Include="GooglePlayServicesLib">
       <HintPath>..\MvxGeoLocationSample\Components\googleplayservices-16.0\lib\android\GooglePlayServicesLib.dll</HintPath>
@@ -50,8 +53,20 @@
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\MvxGeoLocationSample\packages\MvvmCross.PortableSupport.3.1.1\lib\MonoAndroid\System.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\MvxGeoLocationSample\packages\MvvmCross.PortableSupport.3.1.1\lib\MonoAndroid\System.Windows.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Serialization, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\MvxGeoLocationSample\packages\MvvmCross.PortableSupport.3.1.1\lib\MonoAndroid\System.Xml.Serialization.dll</HintPath>
+    </Reference>
     <Reference Include="Xamarin.Android.Support.v4">
       <HintPath>..\MvxGeoLocationSample\Components\googleplayservices-16.0\lib\android\Xamarin.Android.Support.v4.dll</HintPath>
     </Reference>
@@ -63,6 +78,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bootstrap\LocationPluginBootstrap.cs" />
     <Compile Include="IMvxLocationReceiver.cs" />
     <Compile Include="IPlayConnectionCallbacksReceiver.cs" />
     <Compile Include="IPlayConnectionFailedReceiver.cs" />
@@ -75,16 +91,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MvvmCross\Plugins\Cirrious\Location\Cirrious.MvvmCross.Plugins.Location\Cirrious.MvvmCross.Plugins.Location.csproj">
-      <Project>{8b0a9e43-e90f-455c-ae56-45bc70429167}</Project>
-      <Name>Cirrious.MvvmCross.Plugins.Location</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <XamarinComponentReference Include="googleplayservices">
       <Visible>False</Visible>
       <Version>16.0</Version>
     </XamarinComponentReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

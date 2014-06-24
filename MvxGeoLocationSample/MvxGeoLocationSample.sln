@@ -5,10 +5,6 @@ VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvxGeoLocationSample", "MvxGeoLocationSample.csproj", "{FCAAD450-32C5-4A19-A5B2-41F8D0DAA7B1}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MvvmCrossPlugins", "MvvmCrossPlugins", "{623527A7-B8EB-42DB-8889-05A076FF7FA2}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cirrious.MvvmCross.Plugins.Location", "..\MvvmCross\Plugins\Cirrious\Location\Cirrious.MvvmCross.Plugins.Location\Cirrious.MvvmCross.Plugins.Location.csproj", "{8B0A9E43-E90F-455C-AE56-45BC70429167}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvxGeoLocationSample.Core", "..\MvxGeoLocationSample.Core\MvxGeoLocationSample.Core.csproj", "{F79D7E82-BEFE-4BE3-A0FF-7D5ED1B64A91}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cheesebaron.MvxPlugins", "Cheesebaron.MvxPlugins", "{96E40741-327F-4747-8742-F2D3FBA0DDB2}"
@@ -27,10 +23,6 @@ Global
 		{FCAAD450-32C5-4A19-A5B2-41F8D0DAA7B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCAAD450-32C5-4A19-A5B2-41F8D0DAA7B1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FCAAD450-32C5-4A19-A5B2-41F8D0DAA7B1}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{8B0A9E43-E90F-455C-AE56-45BC70429167}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8B0A9E43-E90F-455C-AE56-45BC70429167}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8B0A9E43-E90F-455C-AE56-45BC70429167}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8B0A9E43-E90F-455C-AE56-45BC70429167}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F79D7E82-BEFE-4BE3-A0FF-7D5ED1B64A91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F79D7E82-BEFE-4BE3-A0FF-7D5ED1B64A91}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F79D7E82-BEFE-4BE3-A0FF-7D5ED1B64A91}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -44,7 +36,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{8B0A9E43-E90F-455C-AE56-45BC70429167} = {623527A7-B8EB-42DB-8889-05A076FF7FA2}
 		{1C015C9A-9833-49DE-9609-D0F28C3C4875} = {96E40741-327F-4747-8742-F2D3FBA0DDB2}
 	EndGlobalSection
 EndGlobal
