@@ -1,4 +1,3 @@
-using System;
 using System.Windows.Input;
 using Cirrious.CrossCore;
 using Cirrious.CrossCore.Platform;
@@ -63,7 +62,7 @@ namespace MvxGeoLocationSample.Core.ViewModels
                 {
                     if (!Started)
                         _locationWatcher.Start(
-                            new MvxLocationOptions { Accuracy = MvxLocationAccuracy.Fine}, OnLocation, OnError);
+                            new MvxLocationOptions { Accuracy = MvxLocationAccuracy.Fine }, OnLocation, OnError);
                     else
                         _locationWatcher.Stop();
                     Started = !Started;
