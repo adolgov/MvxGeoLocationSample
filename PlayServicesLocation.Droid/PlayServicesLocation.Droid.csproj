@@ -78,7 +78,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bootstrap\LocationPluginBootstrap.cs" />
     <Compile Include="IMvxLocationReceiver.cs" />
     <Compile Include="IPlayConnectionCallbacksReceiver.cs" />
     <Compile Include="IPlayConnectionFailedReceiver.cs" />
