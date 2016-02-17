@@ -5,7 +5,7 @@ namespace PlayServicesLocation.Droid
 {
     public class PlayConnectionFailedListener
         : Java.Lang.Object
-        , IGoogleApiClientOnConnectionFailedListener
+        , GoogleApiClient.IOnConnectionFailedListener
     {
         private readonly IPlayConnectionFailedReceiver _owner;
 

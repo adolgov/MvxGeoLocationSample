@@ -1,12 +1,13 @@
 using System;
 using Android.Gms.Common;
 using Android.OS;
+using Android.Gms.Common.Apis;
 
 namespace PlayServicesLocation.Droid
 {
     public class PlayConnectionCallbacksListener
             : Java.Lang.Object
-            , IGooglePlayServicesClientConnectionCallbacks
+            , GoogleApiClient.IConnectionCallbacks
     {
         private readonly IPlayConnectionCallbacksReceiver _owner;
 
@@ -23,6 +24,11 @@ namespace PlayServicesLocation.Droid
         public void OnDisconnected()
         {
             _owner.OnDisconnected();
+        }
+
+        public void OnConnectionSuspended(int cause)
+        {
+            throw new NotImplementedException();
         }
     }
 }

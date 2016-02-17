@@ -6,12 +6,13 @@ using Android.Gms.Common;
 using Android.Gms.Location;
 using Android.Locations;
 using Android.OS;
-using Cirrious.CrossCore;
-using Cirrious.CrossCore.Droid;
-using Cirrious.CrossCore.Droid.Platform;
-using Cirrious.CrossCore.Exceptions;
-using Cirrious.CrossCore.Platform;
-using Cirrious.MvvmCross.Plugins.Location;
+using MvvmCross.Platform.Core;
+using MvvmCross.Platform.Droid;
+using MvvmCross.Platform.Droid.Platform;
+using MvvmCross.Platform.Exceptions;
+using MvvmCross.Platform;
+using MvvmCross.Plugins.Location;
+using Android.Gms.Common.Apis;
 
 namespace PlayServicesLocation.Droid
 {
@@ -22,7 +23,8 @@ namespace PlayServicesLocation.Droid
         , IPlayConnectionFailedReceiver
     {
         private Context _context;
-        private LocationClient _locationClient;
+        //private LocationClient _locationClient;
+        private GoogleApiClient _googleApiClient;
         private LocationRequest _locationRequest;
         private readonly PlayConnectionCallbacksListener _connectionCallBacks;
         private readonly PlayConnectionFailedListener _connectionFailed;
@@ -50,17 +52,17 @@ namespace PlayServicesLocation.Droid
         {
             get
             {
-                if (_locationClient == null || _locationRequest == null)
+                if (_googleApiClient == null || _locationRequest == null)
                     throw new MvxException("Location Client not started");
 
-                var androidLocation = _locationClient.LastLocation;
+                var androidLocation = LocationServices.FusedLocationApi.GetLastLocation(_googleApiClient);
                 return androidLocation == null ? null : CreateLocation(androidLocation);
             }
         }
 
         protected override void PlatformSpecificStart(MvxLocationOptions options)
         {
-            if (_locationClient != null)
+            if (_googleApiClient != null)
                 throw new MvxException("You cannot start MvxLocation service more than once");
 
             if (GooglePlayServicesUtil.IsGooglePlayServicesAvailable(Context) != ConnectionResult.Success)
@@ -75,8 +77,15 @@ namespace PlayServicesLocation.Droid
                 ? LocationRequest.PriorityHighAccuracy
                 : LocationRequest.PriorityBalancedPowerAccuracy);
 
-            _locationClient = new LocationClient(Context, _connectionCallBacks, _connectionFailed);
-            _locationClient.Connect();
+            _googleApiClient = new GoogleApiClient.Builder(this.Context)
+                .AddApi(LocationServices.API)
+                .AddConnectionCallbacks(_connectionCallBacks)
+                .AddOnConnectionFailedListener(_connectionFailed)
+                .Build();
+
+            //_locationClient = new LocationClient(Context, _connectionCallBacks, _connectionFailed);
+            //_locationClient.Connect();
+            _googleApiClient.Connect();
         }
 
         protected override void PlatformSpecificStop()
@@ -86,11 +95,14 @@ namespace PlayServicesLocation.Droid
 
         private void EnsureStopped()
         {
-            if (_locationClient == null) return;
+            if (_googleApiClient == null) return;
 
-            _locationClient.RemoveLocationUpdates(_locationListener);
-            _locationClient.Disconnect();
-            _locationClient = null;
+            LocationServices.FusedLocationApi.RemoveLocationUpdates(_googleApiClient, _locationListener);
+            _googleApiClient.Disconnect();
+            _googleApiClient = null;
+            //_locationClient.RemoveLocationUpdates(_locationListener);
+            //_locationClient.Disconnect();
+            //_locationClient = null;
             _locationRequest = null;
         }
 
@@ -121,14 +133,14 @@ namespace PlayServicesLocation.Droid
         {
             if (androidLocation == null)
             {
-                MvxTrace.Trace("Android: Null location seen");
+                Mvx.Trace("Android: Null location seen");
                 return;
             }
 
             if (AlmostEqual(androidLocation.Latitude, double.MaxValue)
                 || AlmostEqual(androidLocation.Longitude, double.MaxValue))
             {
-                MvxTrace.Trace("Android: Invalid location seen");
+                Mvx.Trace("Android: Invalid location seen");
                 return;
             }
 
@@ -143,7 +155,7 @@ namespace PlayServicesLocation.Droid
             }
             catch (Exception ex)
             {
-                MvxTrace.Trace("Android: Exception seen in converting location " + ex.ToLongString());
+                Mvx.Trace("Android: Exception seen in converting location " + ex.ToLongString());
                 return;
             }
 
@@ -157,7 +169,8 @@ namespace PlayServicesLocation.Droid
 
         public void OnConnected(Bundle p0)
         {
-            _locationClient.RequestLocationUpdates(_locationRequest, _locationListener);
+            //_locationClient.RequestLocationUpdates(_locationRequest, _locationListener);
+            LocationServices.FusedLocationApi.RequestLocationUpdates(_googleApiClient, _locationRequest, _locationListener);
         }
 
         public void OnDisconnected()
@@ -176,7 +189,10 @@ namespace PlayServicesLocation.Droid
                     var receiver = new ConnectionFailedPendingIntentReceiver();
                     receiver.ResultOk += ok => {
                         if (ok)
-                            _locationClient.Connect();
+                        {
+                            //_locationClient.Connect();
+                            _googleApiClient.Connect();
+                        }
                     };
                     p0.Resolution.Send(Context, 0, intent, receiver, null);
                 }

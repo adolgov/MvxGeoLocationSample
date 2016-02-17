@@ -1,6 +1,6 @@
-using Cirrious.CrossCore;
-using Cirrious.CrossCore.Plugins;
-using Cirrious.MvvmCross.Plugins.Location;
+using MvvmCross.Platform;
+using MvvmCross.Platform.Plugins;
+using MvvmCross.Plugins.Location;
 
 namespace PlayServicesLocation.Droid
 {
